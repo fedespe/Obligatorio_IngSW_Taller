@@ -34,17 +34,19 @@ public class Ejercicio1_Test {
     private SedeRegional sede;
     private Equipo equipo;
     private ArrayList<Participante> integrantes = new ArrayList();
+    private Date fechaCompetencia;
+    private ArrayList<Pais> paisesHabilitados;
     
     @Before
     public void setUp() {
         pais1=new Pais("Pais1");
         pais2=new Pais("Pais2");
         pais3=new Pais("Pais3");
-        ArrayList<Pais> paisesHabilitados= new ArrayList();
+        paisesHabilitados= new ArrayList();
         paisesHabilitados.add(pais1);
         paisesHabilitados.add(pais2);
         paisesHabilitados.add(pais3);
-        Date fechaCompetencia=new Date(2017, 11, 10);
+        fechaCompetencia=new Date(2017, 11, 10);
         sede = new SedeRegional(fechaCompetencia, 3, 4, "Sede1", paisesHabilitados);
         universidad1 = new Universidad("Univerisdad 1", pais1);
         universidad2 = new Universidad("Univerisdad 2", pais2);
@@ -57,7 +59,7 @@ public class Ejercicio1_Test {
     }
 
     //****************************************************
-    //Pruebas metodo sede.registrarEquipo(equipo)
+    //Pruebas metodo equipo.esValido(fechaCompetencia, paisesHabilitados)
     //****************************************************
     
     //PARTE 1
@@ -67,7 +69,7 @@ public class Ejercicio1_Test {
         Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
         integrantes.add(participante1);
         equipo=new Equipo("Equipo1NombreEquipo", integrantes);
-        sede.registrarEquipo(equipo);
+        equipo.esValido(fechaCompetencia, paisesHabilitados);
     }
     @Test(expected = ObligatorioTallerException.class)
     public void ingresoEquipoFormadoPor2Integrantes() throws ObligatorioTallerException{
@@ -76,7 +78,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante1);
         integrantes.add(participante2);
         equipo=new Equipo("Equipo1NombreEquipo", integrantes);
-        sede.registrarEquipo(equipo);
+        equipo.esValido(fechaCompetencia, paisesHabilitados);
     }
     @Test(expected = ObligatorioTallerException.class)
     public void ingresoEquipoFormadoPor4Integrantes() throws ObligatorioTallerException{
@@ -89,7 +91,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante3);
         integrantes.add(participante4);
         equipo=new Equipo("Equipo1NombreEquipo", integrantes);
-        sede.registrarEquipo(equipo);
+        equipo.esValido(fechaCompetencia, paisesHabilitados);
     }
     @Test
     public void ingresoEquipoFormadoPor3Integrantes() throws ObligatorioTallerException{
@@ -100,7 +102,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1NombreEquipo", integrantes);
-        assertTrue(sede.registrarEquipo(equipo));
+        assertTrue(equipo.esValido(fechaCompetencia, paisesHabilitados));
     }
     
     //PARTE 2
@@ -114,7 +116,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1NombreEquipo", integrantes);
-        sede.registrarEquipo(equipo);
+        equipo.esValido(fechaCompetencia, paisesHabilitados);
     }
     @Test(expected = ObligatorioTallerException.class)
     public void nombreParticipanteUnaPalabra() throws ObligatorioTallerException{
@@ -125,7 +127,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1NombreEquipo", integrantes);
-        sede.registrarEquipo(equipo);
+        equipo.esValido(fechaCompetencia, paisesHabilitados);
     }
     @Test(expected = ObligatorioTallerException.class)
     public void nombreParticipanteDosPalabraMenos4Caracteres() throws ObligatorioTallerException{
@@ -136,7 +138,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1NombreEquipo", integrantes);
-        sede.registrarEquipo(equipo);
+        equipo.esValido(fechaCompetencia, paisesHabilitados);
     }
     @Test
     public void nombreParticipanteDosPalabraCon5Caracteres() throws ObligatorioTallerException{
@@ -147,7 +149,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1NombreEquipo", integrantes);
-        assertTrue(sede.registrarEquipo(equipo));
+        assertTrue(equipo.esValido(fechaCompetencia, paisesHabilitados));
     }
 
     //PARTE 3
@@ -161,7 +163,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1NombreEquipo", integrantes);
-        assertTrue(sede.registrarEquipo(equipo));
+        assertTrue(equipo.esValido(fechaCompetencia, paisesHabilitados));
     }
     @Test(expected = ObligatorioTallerException.class)
     public void ingresoNombreCarreraMenos5Caracteres() throws ObligatorioTallerException{
@@ -172,7 +174,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1NombreEquipo", integrantes);
-        assertTrue(sede.registrarEquipo(equipo));
+        assertTrue(equipo.esValido(fechaCompetencia, paisesHabilitados));
     }
     @Test
     public void ingresoNombreCarreraCon5Caracteres() throws ObligatorioTallerException{
@@ -183,7 +185,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1NombreEquipo", integrantes);
-        assertTrue(sede.registrarEquipo(equipo));
+        assertTrue(equipo.esValido(fechaCompetencia, paisesHabilitados));
     }
     
     //Parte 4
@@ -197,7 +199,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1NombreEquipo", integrantes);
-        assertTrue(sede.registrarEquipo(equipo));
+        assertTrue(equipo.esValido(fechaCompetencia, paisesHabilitados));
     }
     
     @Test(expected = ObligatorioTallerException.class)
@@ -209,7 +211,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1NombreEquipo", integrantes);
-        assertTrue(sede.registrarEquipo(equipo));
+        assertTrue(equipo.esValido(fechaCompetencia, paisesHabilitados));
     }
     
     @Test
@@ -221,7 +223,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1NombreEquipo", integrantes);
-        assertTrue(sede.registrarEquipo(equipo));
+        assertTrue(equipo.esValido(fechaCompetencia, paisesHabilitados));
     }
     @Test
     public void ingresoParticipanteCon20Anos() throws ObligatorioTallerException{
@@ -232,7 +234,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1NombreEquipo", integrantes);
-        assertTrue(sede.registrarEquipo(equipo));
+        assertTrue(equipo.esValido(fechaCompetencia, paisesHabilitados));
     }
     
     //PARTE 5
@@ -246,7 +248,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1NombreEquipo", integrantes);
-        assertTrue(sede.registrarEquipo(equipo));
+        assertTrue(equipo.esValido(fechaCompetencia, paisesHabilitados));
     }
     @Test(expected = ObligatorioTallerException.class)
     public void ingresoParticipantesUniversidadesDistintas2() throws ObligatorioTallerException{
@@ -257,7 +259,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1NombreEquipo", integrantes);
-        assertTrue(sede.registrarEquipo(equipo));
+        assertTrue(equipo.esValido(fechaCompetencia, paisesHabilitados));
     }
     @Test
     public void ingresoParticipantesUniversidadesIguales() throws ObligatorioTallerException{
@@ -268,7 +270,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1NombreEquipo", integrantes);
-        assertTrue(sede.registrarEquipo(equipo));
+        assertTrue(equipo.esValido(fechaCompetencia, paisesHabilitados));
     }
     
     //PARTE 6
@@ -282,7 +284,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1NombreEquipo", integrantes);
-        assertTrue(sede.registrarEquipo(equipo));
+        assertTrue(equipo.esValido(fechaCompetencia, paisesHabilitados));
     }
     @Test(expected = ObligatorioTallerException.class)
     public void ingresoParticipantesCursando1Semestre() throws ObligatorioTallerException{
@@ -294,7 +296,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1NombreEquipo", integrantes);
-        assertTrue(sede.registrarEquipo(equipo));
+        assertTrue(equipo.esValido(fechaCompetencia, paisesHabilitados));
     }
     @Test
     public void ingresoParticipantesCursando8Semestre() throws ObligatorioTallerException{
@@ -306,7 +308,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1NombreEquipo", integrantes);
-        assertTrue(sede.registrarEquipo(equipo));
+        assertTrue(equipo.esValido(fechaCompetencia, paisesHabilitados));
     }
     
     //PARTE 7
@@ -321,7 +323,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("", integrantes);
-        assertTrue(sede.registrarEquipo(equipo));
+        assertTrue(equipo.esValido(fechaCompetencia, paisesHabilitados));
     }
     
     @Test(expected = ObligatorioTallerException.class)
@@ -334,7 +336,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1No", integrantes);
-        assertTrue(sede.registrarEquipo(equipo));
+        assertTrue(equipo.esValido(fechaCompetencia, paisesHabilitados));
     }
     @Test(expected = ObligatorioTallerException.class)
     public void ingresoNombreEquipo21Caracteres() throws ObligatorioTallerException{
@@ -346,7 +348,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1NombreEquipoEq", integrantes);
-        assertTrue(sede.registrarEquipo(equipo));
+        assertTrue(equipo.esValido(fechaCompetencia, paisesHabilitados));
     }
     @Test
     public void ingresoNombreEquipo20Caracteres() throws ObligatorioTallerException{
@@ -358,7 +360,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1NombreEquipoE", integrantes);
-        assertTrue(sede.registrarEquipo(equipo));
+        assertTrue(equipo.esValido(fechaCompetencia, paisesHabilitados));
     }
     
     @Test
@@ -371,7 +373,7 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1Nom", integrantes);
-        assertTrue(sede.registrarEquipo(equipo));
+        assertTrue(equipo.esValido(fechaCompetencia, paisesHabilitados));
     }
     
     //PARTE 8
@@ -388,7 +390,366 @@ public class Ejercicio1_Test {
         integrantes.add(participante2);
         integrantes.add(participante3);
         equipo=new Equipo("Equipo1Nom", integrantes);
+        assertTrue(equipo.esValido(fechaCompetencia, paisesHabilitados));
+    }
+    
+  
+    //****************************************************
+    //Pruebas metodo sede.registrarEquipo(equipo)
+    //****************************************************
+    
+    //PARTE 1
+    
+    @Test(expected = ObligatorioTallerException.class)
+    public void ingresoEquipoFormadoPor1IntegrantesRG() throws ObligatorioTallerException{
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        integrantes.add(participante1);
+        equipo=new Equipo("Equipo1NombreEquipo", integrantes);
+        sede.registrarEquipo(equipo);
+    }
+    @Test(expected = ObligatorioTallerException.class)
+    public void ingresoEquipoFormadoPor2IntegrantesRG() throws ObligatorioTallerException{
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        equipo=new Equipo("Equipo1NombreEquipo", integrantes);
+        sede.registrarEquipo(equipo);
+    }
+    @Test(expected = ObligatorioTallerException.class)
+    public void ingresoEquipoFormadoPor4IntegrantesRG() throws ObligatorioTallerException{
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante4 = new Participante("Nombre4 Apellido4", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        integrantes.add(participante4);
+        equipo=new Equipo("Equipo1NombreEquipo", integrantes);
+        sede.registrarEquipo(equipo);
+    }
+    @Test
+    public void ingresoEquipoFormadoPor3IntegrantesRG() throws ObligatorioTallerException{
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1NombreEquipo", integrantes);
         assertTrue(sede.registrarEquipo(equipo));
     }
-  
+    
+    //PARTE 2
+    
+    @Test(expected = ObligatorioTallerException.class)
+    public void nombreParticipantesVacioRG() throws ObligatorioTallerException{
+        Participante participante1 = new Participante("", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1NombreEquipo", integrantes);
+        sede.registrarEquipo(equipo);
+    }
+    @Test(expected = ObligatorioTallerException.class)
+    public void nombreParticipanteUnaPalabraRG() throws ObligatorioTallerException{
+        Participante participante1 = new Participante("Nombre1", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1NombreEquipo", integrantes);
+        sede.registrarEquipo(equipo);
+    }
+    @Test(expected = ObligatorioTallerException.class)
+    public void nombreParticipanteDosPalabraMenos4CaracteresRG() throws ObligatorioTallerException{
+        Participante participante1 = new Participante("Nombre1 Ape", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1NombreEquipo", integrantes);
+        sede.registrarEquipo(equipo);
+    }
+    @Test
+    public void nombreParticipanteDosPalabraCon5CaracteresRG() throws ObligatorioTallerException{
+        Participante participante1 = new Participante("Nombr Apell", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1NombreEquipo", integrantes);
+        assertTrue(sede.registrarEquipo(equipo));
+    }
+
+    //PARTE 3
+    
+    @Test(expected = ObligatorioTallerException.class)
+    public void ingresoNombreCarreraVacioRG() throws ObligatorioTallerException{
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1998, 06, 19), "", 2, universidad1);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1NombreEquipo", integrantes);
+        assertTrue(sede.registrarEquipo(equipo));
+    }
+    @Test(expected = ObligatorioTallerException.class)
+    public void ingresoNombreCarreraMenos5CaracteresRG() throws ObligatorioTallerException{
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1998, 06, 19), "Carr", 2, universidad1);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1NombreEquipo", integrantes);
+        assertTrue(sede.registrarEquipo(equipo));
+    }
+    @Test
+    public void ingresoNombreCarreraCon5CaracteresRG() throws ObligatorioTallerException{
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1998, 06, 19), "Carre", 2, universidad1);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1NombreEquipo", integrantes);
+        assertTrue(sede.registrarEquipo(equipo));
+    }
+    
+    //Parte 4
+    
+    @Test(expected = ObligatorioTallerException.class)
+    public void ingresoParticipanteCon15AnosRG() throws ObligatorioTallerException{
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(2002, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1NombreEquipo", integrantes);
+        assertTrue(sede.registrarEquipo(equipo));
+    }
+    
+    @Test(expected = ObligatorioTallerException.class)
+    public void ingresoParticipanteCon21AnosRG() throws ObligatorioTallerException{
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1996, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1NombreEquipo", integrantes);
+        assertTrue(sede.registrarEquipo(equipo));
+    }
+    
+    @Test
+    public void ingresoParticipanteCon16AnosRG() throws ObligatorioTallerException{
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(2001, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1NombreEquipo", integrantes);
+        assertTrue(sede.registrarEquipo(equipo));
+    }
+    @Test
+    public void ingresoParticipanteCon20AnosRG() throws ObligatorioTallerException{
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1997, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1NombreEquipo", integrantes);
+        assertTrue(sede.registrarEquipo(equipo));
+    }
+    
+    //PARTE 5
+    
+    @Test(expected = ObligatorioTallerException.class)
+    public void ingresoParticipantesUniversidadesDistintasRG() throws ObligatorioTallerException{
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1997, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1NombreEquipo", integrantes);
+        assertTrue(sede.registrarEquipo(equipo));
+    }
+    @Test(expected = ObligatorioTallerException.class)
+    public void ingresoParticipantesUniversidadesDistintas2RG() throws ObligatorioTallerException{
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1997, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1NombreEquipo", integrantes);
+        assertTrue(sede.registrarEquipo(equipo));
+    }
+    @Test
+    public void ingresoParticipantesUniversidadesIgualesRG() throws ObligatorioTallerException{
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1997, 06, 19), "Carrera1", 2, universidad2);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1NombreEquipo", integrantes);
+        assertTrue(sede.registrarEquipo(equipo));
+    }
+    
+    //PARTE 6
+    
+    @Test(expected = ObligatorioTallerException.class)
+    public void ingresoParticipantesCursando9SemestreRG() throws ObligatorioTallerException{
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1997, 06, 19), "Carrera1", 9, universidad2);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1NombreEquipo", integrantes);
+        assertTrue(sede.registrarEquipo(equipo));
+    }
+    @Test(expected = ObligatorioTallerException.class)
+    public void ingresoParticipantesCursando1SemestreRG() throws ObligatorioTallerException{
+        //Asumo que si esta cursando primer semestre ultimo semestre cursado esota en cero
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1997, 06, 19), "Carrera1", 0, universidad2);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1NombreEquipo", integrantes);
+        assertTrue(sede.registrarEquipo(equipo));
+    }
+    @Test
+    public void ingresoParticipantesCursando8SemestreRG() throws ObligatorioTallerException{
+        //Asumo que si esta cursando primer semestre ultimo semestre cursado esota en cero
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1997, 06, 19), "Carrera1", 8, universidad2);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1NombreEquipo", integrantes);
+        assertTrue(sede.registrarEquipo(equipo));
+    }
+    
+    //PARTE 7
+    
+    @Test(expected = ObligatorioTallerException.class)
+    public void ingresoNombreEquipoVacioRG() throws ObligatorioTallerException{
+        //Asumo que si esta cursando primer semestre ultimo semestre cursado esota en cero
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1997, 06, 19), "Carrera1", 8, universidad2);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("", integrantes);
+        assertTrue(sede.registrarEquipo(equipo));
+    }
+    
+    @Test(expected = ObligatorioTallerException.class)
+    public void ingresoNombreEquipo9CaracteresRG() throws ObligatorioTallerException{
+        //Asumo que si esta cursando primer semestre ultimo semestre cursado esota en cero
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1997, 06, 19), "Carrera1", 8, universidad2);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1No", integrantes);
+        assertTrue(sede.registrarEquipo(equipo));
+    }
+    @Test(expected = ObligatorioTallerException.class)
+    public void ingresoNombreEquipo21CaracteresRG() throws ObligatorioTallerException{
+        //Asumo que si esta cursando primer semestre ultimo semestre cursado esota en cero
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1997, 06, 19), "Carrera1", 8, universidad2);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1NombreEquipoEq", integrantes);
+        assertTrue(sede.registrarEquipo(equipo));
+    }
+    @Test
+    public void ingresoNombreEquipo20CaracteresRG() throws ObligatorioTallerException{
+        //Asumo que si esta cursando primer semestre ultimo semestre cursado esota en cero
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1997, 06, 19), "Carrera1", 8, universidad2);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1NombreEquipoE", integrantes);
+        assertTrue(sede.registrarEquipo(equipo));
+    }
+    
+    @Test
+    public void ingresoNombreEquipo10CaracteresRG() throws ObligatorioTallerException{
+        //Asumo que si esta cursando primer semestre ultimo semestre cursado esota en cero
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1997, 06, 19), "Carrera1", 8, universidad2);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1Nom", integrantes);
+        assertTrue(sede.registrarEquipo(equipo));
+    }
+    
+    //PARTE 8
+    
+    @Test(expected = ObligatorioTallerException.class)
+    public void ingresoUniversidadParticipanteDeUnPaisNoHabilitadoRG() throws ObligatorioTallerException{
+        //Asumo que si esta cursando primer semestre ultimo semestre cursado esota en cero
+        Pais pais4=new Pais("Pais 4");
+        Universidad universidad4=new Universidad("Universidad 4", pais4);
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1997, 06, 19), "Carrera1", 8, universidad4);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad4);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad4);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1Nom", integrantes);
+        assertTrue(sede.registrarEquipo(equipo));
+    }
+    
+    //PRUEBA MAXIMA CANTIDAD DE EQUIPOS
+    @Test(expected = ObligatorioTallerException.class)
+    public void ingresoMasEquiposDeLosQueSePuedeRG() throws ObligatorioTallerException{
+        sede.setMaximoDeEquipos(1);
+        Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1997, 06, 19), "Carrera1", 8, universidad2);
+        Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad2);
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        equipo=new Equipo("Equipo1Nom", integrantes);
+        sede.registrarEquipo(equipo);
+        
+        Participante participante4 = new Participante("Nombre4 Apellido4", new Date(1997, 06, 19), "Carrera1", 8, universidad1);
+        Participante participante5 = new Participante("Nombre5 Apellido5", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        Participante participante6 = new Participante("Nombre6 Apellido6", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+        integrantes=new ArrayList();
+        integrantes.add(participante1);
+        integrantes.add(participante2);
+        integrantes.add(participante3);
+        
+        assertTrue(sede.registrarEquipo(equipo));
+    }
 }

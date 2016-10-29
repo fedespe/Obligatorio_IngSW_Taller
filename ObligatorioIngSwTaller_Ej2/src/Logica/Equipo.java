@@ -7,10 +7,19 @@ import java.util.Date;
 public class Equipo {
     private String nombre;
     private ArrayList<Participante> integrantes;
+    private ArrayList<ProblemaResuelto> problemasResueltos;
 
     public Equipo(String nombre, ArrayList<Participante> integrantes) {
         this.nombre = nombre;
         this.integrantes = integrantes;
+    }
+
+    public ArrayList<ProblemaResuelto> getProblemasResueltos() {
+        return problemasResueltos;
+    }
+
+    public void setProblemasResueltos(ArrayList<ProblemaResuelto> problemasResueltos) {
+        this.problemasResueltos = problemasResueltos;
     }
 
     public String getNombre() {
@@ -66,7 +75,12 @@ public class Equipo {
         return true;
     }
     public int[] puntaje(){
-        int[] retorno= new int[3];
+        int cantidadEjResueltos=problemasResueltos.size();
+        int tiempoTotal=0;
+        for(ProblemaResuelto p: problemasResueltos){
+            tiempoTotal+=p.tiempoTotal();
+        }
+        int[] retorno= new int[]{cantidadEjResueltos,tiempoTotal};
         return retorno;
     }
 

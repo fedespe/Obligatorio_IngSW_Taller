@@ -72,6 +72,7 @@ public class SedeRegional {
     public boolean registrarEquipo(Equipo unEquipo)throws ObligatorioTallerException{
         if(maximoDeEquipos>listaEquipos.size()){
             unEquipo.esValido(fechaCompetencia, paisesHabilitados);
+            listaEquipos.add(unEquipo);
         }else{
             throw new ObligatorioTallerException("La lista de equipos esta completa");
         }
