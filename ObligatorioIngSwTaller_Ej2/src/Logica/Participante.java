@@ -10,6 +10,14 @@ public class Participante {
     private int ultimoSemestreCursado;
     private Universidad universidad;
 
+    public Participante(String nombre, Date fechaNacimiento, String carreraQueCursa, int ultimoSemestreCursado, Universidad universidad) {
+        this.nombre = nombre;
+        this.fechaNacimiento = fechaNacimiento;
+        this.carreraQueCursa = carreraQueCursa;
+        this.ultimoSemestreCursado = ultimoSemestreCursado;
+        this.universidad = universidad;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -87,7 +95,15 @@ public class Participante {
     }
 
     private int calcularEdad(Date fechaCompetencia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int año = fechaCompetencia.getYear()- fechaNacimiento.getYear();
+        int mes =fechaCompetencia.getMonth()- fechaNacimiento.getMonth();
+        int dia = fechaCompetencia.getDay()- fechaNacimiento.getMonth();
+        //Se ajusta el año dependiendo el mes y el día
+        if(mes<0 || (mes==0 && dia<0)){
+            año--;
+        }
+        //Regresa la edad en base a la fecha de nacimiento
+        return año;
     }
 
     public String getNombreUniversidad() {

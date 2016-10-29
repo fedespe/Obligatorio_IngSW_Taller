@@ -7,6 +7,27 @@ import java.util.Date;
 public class Equipo {
     private String nombre;
     private ArrayList<Participante> integrantes;
+
+    public Equipo(String nombre, ArrayList<Participante> integrantes) {
+        this.nombre = nombre;
+        this.integrantes = integrantes;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public ArrayList<Participante> getIntegrantes() {
+        return integrantes;
+    }
+
+    public void setIntegrantes(ArrayList<Participante> integrantes) {
+        this.integrantes = integrantes;
+    }
     
     //Hubo que agregar al metodo es valido la fecha de la 
     //competencia para la validacion de la edad
@@ -94,7 +115,7 @@ public class Equipo {
     private void validarNombreEquipo() throws ObligatorioTallerException {
         verificarStringVacio(nombre);
         if(nombre.length()<10 || nombre.length()>20 ){
-            throw new ObligatorioTallerException("Nombre del equipo vacio");
+            throw new ObligatorioTallerException("El nombre del equipo no tiene los caracteres correctos");
         }
     }
     //Se podria poner en una clase utilidades se utiliza tanto en participante 

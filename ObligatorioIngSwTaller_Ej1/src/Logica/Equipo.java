@@ -115,7 +115,7 @@ public class Equipo {
     private void validarNombreEquipo() throws ObligatorioTallerException {
         verificarStringVacio(nombre);
         if(nombre.length()<10 || nombre.length()>20 ){
-            throw new ObligatorioTallerException("Nombre del equipo vacio");
+            throw new ObligatorioTallerException("El nombre del equipo no tiene los caracteres correctos");
         }
     }
     //Se podria poner en una clase utilidades se utiliza tanto en participante 

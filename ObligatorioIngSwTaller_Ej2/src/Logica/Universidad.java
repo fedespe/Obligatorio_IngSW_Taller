@@ -20,5 +20,10 @@ public class Universidad {
     public void setPais(Pais pais) {
         this.pais = pais;
     }
+
+    public Universidad(String nombre, Pais pais) {
+        this.nombre = nombre;
+        this.pais = pais;
+    }
    
 }
