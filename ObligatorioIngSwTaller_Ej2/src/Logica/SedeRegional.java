@@ -13,7 +13,12 @@ public class SedeRegional {
     private ArrayList<Pais> paisesHabilitados;
     
     
-    public boolean registrarEquipo(Equipo unEquipo){
+    public boolean registrarEquipo(Equipo unEquipo)throws ObligatorioTallerException{
+        if(maximoDeEquipos>listaEquipos.size()){
+            unEquipo.esValido(fechaCompetencia, paisesHabilitados);
+        }else{
+            throw new ObligatorioTallerException("La lista de equipos esta completa");
+        }
         return true;
     }
     public ArrayList<String> generarScoreboard(){

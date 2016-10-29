@@ -9,6 +9,54 @@ public class Participante {
     private String carreraQueCursa;
     private int ultimoSemestreCursado;
     private Universidad universidad;
+
+    public Participante(String nombre, Date fechaNacimiento, String carreraQueCursa, int ultimoSemestreCursado, Universidad universidad) {
+        this.nombre = nombre;
+        this.fechaNacimiento = fechaNacimiento;
+        this.carreraQueCursa = carreraQueCursa;
+        this.ultimoSemestreCursado = ultimoSemestreCursado;
+        this.universidad = universidad;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getCarreraQueCursa() {
+        return carreraQueCursa;
+    }
+
+    public void setCarreraQueCursa(String carreraQueCursa) {
+        this.carreraQueCursa = carreraQueCursa;
+    }
+
+    public int getUltimoSemestreCursado() {
+        return ultimoSemestreCursado;
+    }
+
+    public void setUltimoSemestreCursado(int ultimoSemestreCursado) {
+        this.ultimoSemestreCursado = ultimoSemestreCursado;
+    }
+
+    public Universidad getUniversidad() {
+        return universidad;
+    }
+
+    public void setUniversidad(Universidad universidad) {
+        this.universidad = universidad;
+    }
     
     
 
@@ -52,5 +100,11 @@ public class Participante {
 
     public String getNombreUniversidad() {
         return universidad.getNombre();
+    }
+
+    public void validarCantidadSemestres() throws ObligatorioTallerException {
+        if(ultimoSemestreCursado<1 || ultimoSemestreCursado>8){
+            throw new ObligatorioTallerException("La cantidad de semestres cursados no es la correcta");
+        }
     }
 }
