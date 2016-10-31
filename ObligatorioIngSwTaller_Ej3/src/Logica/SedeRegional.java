@@ -75,9 +75,19 @@ public class SedeRegional {
     
     public boolean registrarEquipo(Equipo unEquipo)throws ObligatorioTallerException{
         if(maximoDeEquipos>listaEquipos.size()){
-            unEquipo.esValido(fechaCompetencia, paisesHabilitados);
-            listaEquipos.add(unEquipo);
+            unEquipo.esValido();
+            //Parte 4
+            //valida que la edad este 16<=edad<=20
+            validarEdadIntegrantes(unEquipo);
+            //Parte 8
+            //valida que la universidad donde cursan los integrantes debe ser 
+            //del mismo pais que los paises habilitados
+            validarPaisHabilitado(unEquipo);
+            //En caso de empate a la hora del scoreBoard 
+            //me parecio mas prolijo registrar el ingreso
             unEquipo.setFechaRegistro(new Date());
+            listaEquipos.add(unEquipo);
+            
         }else{
             throw new ObligatorioTallerException("La lista de equipos esta completa");
         }
@@ -86,7 +96,7 @@ public class SedeRegional {
     public ArrayList<String> generarScoreboard(){
         ArrayList<String> retorno=new ArrayList();
         retorno.add("Scoreboard de la competencia - Sede "+nombreSede);
-        Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Format formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         retorno.add(formatter.format(fechaCompetencia));//ver formato por las dudas
         retorno.add("Posociones");
         Equipo[] listaOrdenadaEquipos=new Equipo[listaEquipos.size()];
@@ -99,6 +109,28 @@ public class SedeRegional {
         for(Equipo e : listaOrdenadaEquipos){
             retorno.add("<"+e.getNombre()+">"+"<"+e.puntaje()[0]+">"+"<"+e.puntaje()[1]+">");
         }
+        retorno.add("Ultima actualizacion: "+formatter.format(new Date()));
         return retorno;
+    }
+    
+    private void validarEdadIntegrantes(Equipo unEquipo) throws ObligatorioTallerException {
+        for(Participante p:unEquipo.getIntegrantes()){
+            p.validadEdadIntegrantes(fechaCompetencia);
+        }
+    }
+
+    private void validarPaisHabilitado(Equipo unEquipo) throws ObligatorioTallerException {
+       //Los integrantes del equipo pertenecen a la misma universidad
+       //solo es necesario chequear con uno solo
+       boolean retorno=false;
+       //se podria hacer con un while
+       for(Pais p: paisesHabilitados){
+           //ver que se podria simplificar para llegar a el nombre del pais
+           if(p.getNombre()==unEquipo.getIntegrantes().get(0).getUniversidad().getPais().getNombre())
+                retorno=true;
+       }
+       if (!retorno){
+           throw new ObligatorioTallerException("El nombre del pais correspondiente a la universidad no esta habilitada");
+       }
     }
 }

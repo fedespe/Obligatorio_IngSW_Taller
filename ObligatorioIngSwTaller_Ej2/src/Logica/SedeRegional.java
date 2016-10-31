@@ -71,7 +71,14 @@ public class SedeRegional {
     
     public boolean registrarEquipo(Equipo unEquipo)throws ObligatorioTallerException{
         if(maximoDeEquipos>listaEquipos.size()){
-            unEquipo.esValido(fechaCompetencia, paisesHabilitados);
+            unEquipo.esValido();
+            //Parte 4
+            //valida que la edad este 16<=edad<=20
+            validarEdadIntegrantes(unEquipo);
+            //Parte 8
+            //valida que la universidad donde cursan los integrantes debe ser 
+            //del mismo pais que los paises habilitados
+            validarPaisHabilitado(unEquipo);
             listaEquipos.add(unEquipo);
         }else{
             throw new ObligatorioTallerException("La lista de equipos esta completa");
@@ -80,5 +87,26 @@ public class SedeRegional {
     }
     public ArrayList<String> generarScoreboard(){
         return new ArrayList();
+    }
+
+    private void validarEdadIntegrantes(Equipo unEquipo) throws ObligatorioTallerException {
+        for(Participante p:unEquipo.getIntegrantes()){
+            p.validadEdadIntegrantes(fechaCompetencia);
+        }
+    }
+
+    private void validarPaisHabilitado(Equipo unEquipo) throws ObligatorioTallerException {
+       //Los integrantes del equipo pertenecen a la misma universidad
+       //solo es necesario chequear con uno solo
+       boolean retorno=false;
+       //se podria hacer con un while
+       for(Pais p: paisesHabilitados){
+           //ver que se podria simplificar para llegar a el nombre del pais
+           if(p.getNombre()==unEquipo.getIntegrantes().get(0).getUniversidad().getPais().getNombre())
+                retorno=true;
+       }
+       if (!retorno){
+           throw new ObligatorioTallerException("El nombre del pais correspondiente a la universidad no esta habilitada");
+       }
     }
 }

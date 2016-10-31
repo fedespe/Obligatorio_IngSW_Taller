@@ -32,7 +32,7 @@ public class Equipo {
     //Hubo que agregar al metodo es valido la fecha de la 
     //competencia para la validacion de la edad
     //Hubo que agregar una lista con los paises habilitados
-    public boolean esValido(Date fechaCompetencia, ArrayList<Pais> paisesHabilitados) throws ObligatorioTallerException{
+    public boolean esValido() throws ObligatorioTallerException{
         //Parte 1
         //valida que hay 3 integrantes y que son distintos
         validar3IntegrantesDistintos();
@@ -44,10 +44,6 @@ public class Equipo {
         //valida que el nombre de la carrera no puede ser vacio
         //y por lo menos de 5 caracteres
         validarNombreCarrera();
-        //Parte 4
-        //valida que la edad este 16<=edad<=20
-        //falta metodo en integrantes de calcular edad
-        validarEdadIntegrantes(fechaCompetencia);//No esta hecho falta dato de fechaCompetencia
         //Parte 5
         //validad que los integrantes pertenezcan a la misma universidad
         validarIntegrantesUniversidad();
@@ -59,10 +55,6 @@ public class Equipo {
         //valida que el nombre del equipo no sea vacio 
         //y que tenga entre 10 y 20 caracteres inclusive
         validarNombreEquipo();
-        //Parte 8
-        //valida que la universidad donde cursan los integrantes debe ser 
-        //del mismo pais que los paises habilitados
-        validarPaisHabilitado(paisesHabilitados);
         return true;
     }
     public int[] puntaje(){
@@ -92,12 +84,7 @@ public class Equipo {
         }
     }
 
-    //falta calcular la edad en los integrantes
-    private void validarEdadIntegrantes(Date fechaCompetencia) throws ObligatorioTallerException {
-        for(Participante p:integrantes){
-            p.validadEdadIntegrantes(fechaCompetencia);
-        }
-    }
+
 
     private void validarIntegrantesUniversidad() throws ObligatorioTallerException {
         if(integrantes.get(0).getNombreUniversidad()!=integrantes.get(1).getNombreUniversidad()
@@ -125,19 +112,6 @@ public class Equipo {
             throw new ObligatorioTallerException("Nombre del equipo vacio");
         }   
     }
-
-    private void validarPaisHabilitado(ArrayList<Pais> paisesHabilitados) throws ObligatorioTallerException{
-       //Los integrantes del equipo pertenecen a la misma universidad
-       //solo es necesario chequear con uno solo
-       boolean retorno=false;
-       //se podria hacer con un while
-       for(Pais p: paisesHabilitados){
-           //ver que se podria simplificar para llegar a el nombre del pais
-           if(p.getNombre()==integrantes.get(0).getUniversidad().getPais().getNombre())
-                retorno=true;
-       }
-       if (!retorno){
-           throw new ObligatorioTallerException("El nombre del pais correspondiente a la universidad no esta habilitada");
-       }
-    }
+    
+    
 }

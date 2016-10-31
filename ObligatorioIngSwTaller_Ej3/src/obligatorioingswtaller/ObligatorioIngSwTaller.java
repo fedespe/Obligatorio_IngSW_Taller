@@ -48,15 +48,15 @@ public class ObligatorioIngSwTaller {
             paisesHabilitados.add(pais1);
             paisesHabilitados.add(pais2);
             paisesHabilitados.add(pais3);
-            fechaCompetencia=new Date(2017, 11, 10);
-            sede = new SedeRegional(fechaCompetencia, 3, 4, "Sede1", paisesHabilitados);
+            fechaCompetencia=new Date(2017-1900, 11, 10,17,00);//10 de diciembre de 2017
+            sede = new SedeRegional(fechaCompetencia, 6, 4, "Sede1", paisesHabilitados);
             universidad1 = new Universidad("Univerisdad 1", pais1);
             universidad2 = new Universidad("Univerisdad 2", pais2);
             universidad3 = new Universidad("Univerisdad 3", pais3);
             
-            Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
-            Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
-            Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+            Participante participante1 = new Participante("Nombre1 Apellido1", new Date(1998-1900, 06, 19), "Carrera1", 2, universidad1);
+            Participante participante2 = new Participante("Nombre2 Apellido2", new Date(1998-1900, 06, 19), "Carrera1", 2, universidad1);
+            Participante participante3 = new Participante("Nombre3 Apellido3", new Date(1998-1900, 06, 19), "Carrera1", 2, universidad1);
             integrantes.add(participante1);
             integrantes.add(participante2);
             integrantes.add(participante3);
@@ -72,9 +72,9 @@ public class ObligatorioIngSwTaller {
             sede.registrarEquipo(equipo);
             
             integrantes=new ArrayList();
-            Participante participante4 = new Participante("Nombre4 Apellido1", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
-            Participante participante5 = new Participante("Nombre5 Apellido2", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
-            Participante participante6 = new Participante("Nombre6 Apellido3", new Date(1998, 06, 19), "Carrera1", 2, universidad1);
+            Participante participante4 = new Participante("Nombre4 Apellido1", new Date(1998-1900, 06, 19), "Carrera1", 2, universidad1);
+            Participante participante5 = new Participante("Nombre5 Apellido2", new Date(1998-1900, 06, 19), "Carrera1", 2, universidad1);
+            Participante participante6 = new Participante("Nombre6 Apellido3", new Date(1998-1900, 06, 19), "Carrera1", 2, universidad1);
             integrantes.add(participante4);
             integrantes.add(participante5);
             integrantes.add(participante6);
@@ -83,7 +83,7 @@ public class ObligatorioIngSwTaller {
             problemasResueltos=new ArrayList();
             problema1=new ProblemaResuelto(1, 15, 0);
             problema2=new ProblemaResuelto(2, 25, 1);
-            ProblemaResuelto problema3=new ProblemaResuelto(2, 5, 1);
+            ProblemaResuelto problema3=new ProblemaResuelto(2, 45, 1);
             ProblemaResuelto problema4=new ProblemaResuelto(2, 20, 1);
             problemasResueltos.add(problema1);
             problemasResueltos.add(problema2);
@@ -92,8 +92,71 @@ public class ObligatorioIngSwTaller {
             equipo.setProblemasResueltos(problemasResueltos);
             
             sede.registrarEquipo(equipo);
+             
+            integrantes=new ArrayList();
+            Participante participante10 = new Participante("Nombre7 Apellido1", new Date(1998-1900, 06, 19), "Carrera1", 2, universidad1);
+            Participante participante11 = new Participante("Nombre8 Apellido2", new Date(1998-1900, 06, 19), "Carrera1", 2, universidad1);
+            Participante participante12 = new Participante("Nombre9 Apellido3", new Date(1998-1900, 06, 19), "Carrera1", 2, universidad1);
+            integrantes.add(participante10);
+            integrantes.add(participante11);
+            integrantes.add(participante12);
+            equipo=new Equipo("Equipo4NombreEquipo", integrantes);
             
+            problemasResueltos=new ArrayList();
+            problema1=new ProblemaResuelto(1, 15, 0);
+            problema2=new ProblemaResuelto(2, 25, 1);
+            problema3=new ProblemaResuelto(2, 5, 1);
+            problema4=new ProblemaResuelto(2, 20, 1);
+            problemasResueltos.add(problema1);
+            problemasResueltos.add(problema2);
+            problemasResueltos.add(problema3);
+            problemasResueltos.add(problema4);
+            equipo.setProblemasResueltos(problemasResueltos);
             
+            sede.registrarEquipo(equipo);
+            
+            integrantes=new ArrayList();
+            Participante participante7 = new Participante("Nombre7 Apellido1", new Date(1998-1900, 06, 19), "Carrera1", 2, universidad1);
+            Participante participante8 = new Participante("Nombre8 Apellido2", new Date(1998-1900, 06, 19), "Carrera1", 2, universidad1);
+            Participante participante9 = new Participante("Nombre9 Apellido3", new Date(1998-1900, 06, 19), "Carrera1", 2, universidad1);
+            integrantes.add(participante7);
+            integrantes.add(participante8);
+            integrantes.add(participante9);
+            equipo=new Equipo("Equipo3NombreEquipo", integrantes);
+            
+            problemasResueltos=new ArrayList();
+            problema1=new ProblemaResuelto(1, 15, 0);
+            problema2=new ProblemaResuelto(2, 25, 1);
+            problema3=new ProblemaResuelto(2, 5, 1);
+            problema4=new ProblemaResuelto(2, 20, 1);
+            problemasResueltos.add(problema1);
+            problemasResueltos.add(problema2);
+            problemasResueltos.add(problema3);
+            problemasResueltos.add(problema4);
+            equipo.setProblemasResueltos(problemasResueltos);
+            
+            sede.registrarEquipo(equipo);
+           
+            
+            integrantes=new ArrayList();
+            Participante participante13 = new Participante("Nombre7 Apellido1", new Date(1998-1900, 06, 19), "Carrera1", 2, universidad1);
+            Participante participante14 = new Participante("Nombre8 Apellido2", new Date(1998-1900, 06, 19), "Carrera1", 2, universidad1);
+            Participante participante15 = new Participante("Nombre9 Apellido3", new Date(1998-1900, 06, 19), "Carrera1", 2, universidad1);
+            integrantes.add(participante13);
+            integrantes.add(participante14);
+            integrantes.add(participante15);
+            equipo=new Equipo("Equipo5NombreEquipo", integrantes);
+            
+            problemasResueltos=new ArrayList();
+            problema1=new ProblemaResuelto(1, 15, 0);
+            problema2=new ProblemaResuelto(2, 25, 1);
+            problema3=new ProblemaResuelto(2, 5, 1);
+            problemasResueltos.add(problema1);
+            problemasResueltos.add(problema2);
+            problemasResueltos.add(problema3);
+            equipo.setProblemasResueltos(problemasResueltos);
+            
+            sede.registrarEquipo(equipo);
             
             ArrayList<String> retorno=sede.generarScoreboard();
         } 

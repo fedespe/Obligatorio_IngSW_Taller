@@ -111,7 +111,7 @@ public class Participante {
     }
 
     public void validarCantidadSemestres() throws ObligatorioTallerException {
-        if(ultimoSemestreCursado<1 || ultimoSemestreCursado>8){
+        if(ultimoSemestreCursado<1 || ultimoSemestreCursado>=8){
             throw new ObligatorioTallerException("La cantidad de semestres cursados no es la correcta");
         }
     }
