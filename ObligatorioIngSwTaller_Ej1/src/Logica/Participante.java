@@ -83,7 +83,7 @@ public class Participante {
     
     private void verificarStringVacio(String s) throws ObligatorioTallerException{
         if("".equals(s)){
-            throw new ObligatorioTallerException("CarreraQueCursa vacio");
+            throw new ObligatorioTallerException("String vacio");
         }   
     }
 
